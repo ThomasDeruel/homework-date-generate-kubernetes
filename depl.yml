@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: replicatset
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+      - name: hhtpd
+        image: httpd:2.4.46-alpine
+        volumeMounts:
+        - name: app-volume
+          mountPath: /usr/local/apache2/htdocs
+      volumes:
+      - name: app-volume
+        hostPath: 
+          path: /web
+          type: DirectoryOrCreate
