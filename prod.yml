@@ -5,11 +5,11 @@ metadata:
 spec:
   selector:
     matchLabels:
-      name: daemonset-index
+      name: ds
   template:
     metadata:
       labels:
-        name: daemonset-index
+        name: ds
     spec:
       containers:
       - name: alpine
@@ -22,10 +22,10 @@ spec:
               sleep 60;
             done
         volumeMounts:
-        - name: app-volume
+        - name: web
           mountPath: /web
       volumes:
-      - name: app-volume
+      - name: web
         hostPath: 
           path: /web
           type: DirectoryOrCreate
